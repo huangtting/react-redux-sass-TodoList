@@ -1,0 +1,25 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import 'font-awesome/css/font-awesome.min.css'
+
+const Todo=({onClick,completed,text})=>(
+    
+    <li      
+        onClick={onClick}
+    >
+    <p
+      style={
+        {
+            textDecoration:completed?'line-through':'none'
+        }
+    }
+    >  {text}</p>
+    </li>
+)
+
+Todo.PropTypes={
+    onClick:PropTypes.func.isRequired,
+    completed:PropTypes.bool.isRequired,
+    text:PropTypes.string.isRequired
+}
+export default Todo
