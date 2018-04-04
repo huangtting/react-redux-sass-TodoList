@@ -38,7 +38,7 @@ body {
         height: $h*4+2;
         @include border;
         background: #fff;
-        width: $width*2+110+px;
+        width: $width*2+100+px;
         padding: 0 5px;
         &:focus {
             @include border(1px, #3c9, solid);
