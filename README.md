@@ -7,6 +7,11 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm install
 
 ```
+要额外安装sass
+所以
+```
+cnpm install sass-loader node-sass --save-dev
+```
 找到node_modules/react-scripts/config/webpack.config.dev.js文件和webpack.config.prod.js文件
 
 将module配置项的最后一项配置改成如下
