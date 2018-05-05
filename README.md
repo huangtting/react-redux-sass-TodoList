@@ -167,25 +167,9 @@ const mapStateToProps = (state, ownProps) => {
 
 如果没有定义mapStateToProps，组件不会监听store的变化，也就是说Store的更新不会引起UI的更新
 
-## mapDispatchToProps
-通过mapDispatchToProps这个方法，把dispaatch当做props传入被包裹的UI组件
-
-```
-const mapDispatchTodoList=dispatch=>{
-    return {
-        // 传递onTodoClick给TodoList
-        onTodoClick : id=>{
-            dispatch(toggleTodo(id))
-        }
-    }
-}
-```
-如果mapDispatchToProps是一个函数, 并且传入ownProps, 当组件获取新的props的时候，mapDispatchToProps也会被调用.
-
-不传mapDispatchToProps的时候，React-Redux会自动将dispatch注入组件的props。
-
-mapDispatchToProps的两种写法：
-函数
+## mapDispatchToProps(参考阮一峰)
+mapDispatchToProps这个方法定义了哪些用户的操作应该当作 Action，dispatch 后传给 Store。它可以是一个函数，也可以是一个对象。
+如果他是一个函数，会得到dispatch和ownProps（容器组件的props对象）两个参数。
 ```
 const mapDispatchToProps = (
   dispatch,
@@ -201,7 +185,10 @@ const mapDispatchToProps = (
   };
 }
 ```
-对象
+从上面代码可以看到，mapDispatchToProps作为函数，应该返回一个对象，该对象的每个键值对都是一个映射，比如onTodoClick触发时要进行dispatch操作。如果把mapDispatchToProps写作函数，那么需要显式地调用dispatch方法。
+
+如果mapDispatchToProps是一个对象，它的每个键名也是对应 UI 组件的同名参数，键值应该是一个函数，会被当作 Action creator ，返回的 Action 会由 Redux 自动dispatch，也就是不需要显式调用dispatch。举例来说，上面的mapDispatchToProps写成对象就是下面这样。
+
 ```
 const mapDispatchToProps = {
   onClick: (filter) => {
